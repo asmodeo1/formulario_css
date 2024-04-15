@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+        }
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: #F2F2F2;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 20px;
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            width: fit-content;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 4px rgb(175, 173, 173);
+        }
+        input[type="submit"], form div  {
+            grid-column: 1 / 3;
+        }
+        input[type="submit"] {
+            background-color: rgb(6, 175, 65);
+            color:white;
+            padding: 10px;
+        }
+        input, select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #c7c4c4;
+        }
+        #contraseñaRepetida {
+            align-self: center;
+        }
+        #edad {
+            width: 20%;
+        }
+        #acepto {
+            margin-right: 20px;
+        }
+        form :required {
+            background-color: rgb(200, 234, 200);
+        }
+        form div {
+            grid-column: 2;
+        }
+        p {
+            font-size: .8rem;
+            padding: 0;
+            margin: 0;
+        }
+        .aviso {
+            /*display: none; */
+            visibility: hidden;
+        }
+        :required + p {
+            color: red;
+        }
+        #nombre:invalid + p, #contraseña:invalid + p  {
+            /*display: block; */
+            visibility: visible;
+        }
+        [name="situacion"] { /* [type="radio"] { */
+            margin-right: 10px;
+        }
+        fieldset {
+            grid-column: 1 / 3;
+            padding: 10px;
+        }
+        .aceptar {
+            text-align: right;
+        }
+        .aceptar a {
+            color: black;
+        }
+        .fichero {
+            grid-column: 1 / 3;
+        }
+        label[for="curriculum"] {
+            border-top: 1px solid lightgray;
+            border-bottom: 1px solid rgb(165, 164, 164);
+            border-right: 1px solid rgb(165, 164, 164);
+            border-left: 1px solid lightgray;
+            padding: 5px;
+            grid-column: 1;
+            cursor: pointer;
+        }
+        label[for="curriculum"]:hover {
+            background-color: #c7c4c4;
+        }
+        input[type="file"] {
+            visibility: hidden;
+        }
+        .comentarios {
+            grid-column: 1 / 3;
+        }
+        .comentarios textarea {
+            display: block;
+            width: 100%;
+            height: 10em;
+        }
+        .salario {
+            text-align: end;
+        }
+        input:where([name="nombre"],[name="contraseña"]) {
+            width: 100%;
+        }
+
+    </style>
+  </head>
+  <body>
+    <h1>Registro de usuario</h1>
+    <main>
+      <form action="">
+        <label for="nombre">Nombre:</label>
+        <div>
+            <input type="text" name="nombre" id="nombre" autofocus required minlength="3" pattern="[a-zA-Z]{3,}"/>
+            <p class="aviso">El nombre es obligatorio</p>
+        </div>
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" name="apellidos" id="apellidos" />
+        <label for="edad">Edad:</label>
+        <input type="number" name="edad" id="edad" min="18" value="18" required/>
+        <label for="sexo">Sexo:</label>
+        <select name="sexo" id="sexo">
+          <option>Seleccionar</option>
+          <option>Masculino</option>
+          <option>Femenino</option>
+          <option>Otro</option>
+        </select>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="✉️"/>
+        <label for="contraseña" accesskey="C">Contraseña:</label>
+        <div>
+            <input type="password" name="contraseña" id="contraseña" required/>
+            <p class="aviso">Debe tener al menos 6 caracteres</p>
+        </div>
+        <label for="contraseñaRepetida">Confirmar contraseña:</label>
+        <input
+          type="password"
+          name="contraseñaRepetida"
+          id="contraseñaRepetida"
+          placeholder="Pon tu contraseña de nuevo"
+          required
+        />
+        <fieldset>
+            <legend>Situación laboral</legend>
+            <input type="radio" name="situacion" id="empleado"><label for="empleado">Empleado</label>
+            <input type="radio" name="situacion" id="desempleado"><label for="paro">desempleado</label>
+            <input type="radio" name="situacion" id="pensionista"><label for="pensionista">pensionista</label>
+        </fieldset>
+        <div class="fichero">
+            <label for="curriculum">Adjuntar curriculum</label>
+            <input type="file" name="curriculum" id="curriculum" accept="application/pdf">
+        </div>
+        <div class="comentarios">
+            <label for="comentarios">Comentarios</label>
+            <textarea name="comentarios" id="comentarios"></textarea>
+        </div>
+        <label for="salario" class="salario">Salario 2000 - 5000 (€)</label>
+        <input type="range" name="salario" id="salario" min="2000" max="5000">
+        <div class="aceptar">
+            <input type="checkbox" name="acepto" id="acepto"><label for="acepto">Acepto las <a href="condiciones.htm">condiciones</a></label>
+        </div>
+        <input type="submit" value="Registrarse" />
+      </form>
+    </main>
+
+  </body>
+</html>
